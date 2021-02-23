@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <stdio.h>
+#include <sstream>
 
 using namespace std;
 
@@ -16,6 +16,7 @@ using namespace std;
  * FUNCTION SINGATURE:
  *     string breakCash(int numPennies)
  */ 
+
 string breakCash(int numPennies) {
    int dollars = 0;
    int quarters = 0;
@@ -30,20 +31,23 @@ string breakCash(int numPennies) {
    nickles = (((numPennies % 100) % 25) % 10) / 5;
    pennies = (((numPennies % 100) % 25) % 10) % 5;
 
-   return "In US currency you have: " + 
-          to_string(dollars) + " dollars, " +
-          to_string(quarters) + " quarters, " +
-          to_string(dimes) + " dimes, " +
-          to_string(nickles) + " nickles, and " +
-          to_string(pennies) + " pennies.\n" +
-          "In Canadian currency you have: " + 
-          sprintf((numPennies * exchangeRate) / 100, %.2f) + " dollars.";
+   stringstream os;
+   os.precision(2);
+   os << "In US currency you have: " + 
+      to_string(dollars) + " dollars, " +
+      to_string(quarters) + " quarters, " +
+      to_string(dimes) + " dimes, " +
+      to_string(nickles) + " nickles, and " +
+      to_string(pennies) + " pennies.\n" + "In Canadian currency you have: $";   
+   os << fixed << (numPennies * exchangeRate / 100);
+   os.str((os.str() + " dollars."));
+   return os.str();
 }
 
 int main() {
    int numOfPennies = 0;
    cout << "Please enter all of your pennies: " << endl;
    cin >> numOfPennies;
-   cout << breakCash(numOfPennies);
+   cout << breakCash(numOfPennies) << endl;
    return 0;
 }
