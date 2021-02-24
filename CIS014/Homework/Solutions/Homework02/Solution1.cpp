@@ -17,19 +17,14 @@ using namespace std;
  *     string breakCash(int numPennies)
  */ 
 
-string breakCash(int numPennies) {
-   int dollars = 0;
-   int quarters = 0;
-   int dimes = 0;
-   int nickles = 0;
-   int pennies = 0;
+string breakCash(int numPennies) 
+{
+   int dollars = numPennies / 100;
+   int quarters = (numPennies % 100) / 25;
+   int dimes = ((numPennies % 100) % 25) / 10;
+   int nickles = (((numPennies % 100) % 25) % 10) / 5;
+   int pennies = (((numPennies % 100) % 25) % 10) % 5;
    double exchangeRate = 1.33;
-
-   dollars = numPennies / 100;
-   quarters = (numPennies % 100) / 25;
-   dimes = ((numPennies % 100) % 25) / 10;
-   nickles = (((numPennies % 100) % 25) % 10) / 5;
-   pennies = (((numPennies % 100) % 25) % 10) % 5;
 
    stringstream os;
    os.precision(2);
@@ -38,13 +33,14 @@ string breakCash(int numPennies) {
       to_string(quarters) + " quarters, " +
       to_string(dimes) + " dimes, " +
       to_string(nickles) + " nickles, and " +
-      to_string(pennies) + " pennies.\n" + "In Canadian currency you have: $";   
-   os << fixed << (numPennies * exchangeRate / 100);
+      to_string(pennies) + " pennies.\n" + "In Canadian currency you have: $"
+      << fixed << (numPennies * exchangeRate / 100);
    os.str((os.str() + " dollars."));
    return os.str();
 }
 
-int main() {
+int main()
+{
    int numOfPennies = 0;
    cout << "Please enter all of your pennies: " << endl;
    cin >> numOfPennies;

@@ -11,23 +11,21 @@ using namespace std;
 */
 int main() {
    int numPennies = 0;
-   int dollars = 0;
-   int quarters = 0;
-   int dimes = 0;
-   int nickles = 0;
-   int pennies = 0;
-   double exchangeRate = 1.33;
-
+   
    cout << "Please enter all of your pennies: " << endl;
    cin >> numPennies;
-   dollars = numPennies / 100;
-   quarters = (numPennies % 100) / 25;
-   dimes = ((numPennies % 100) % 25) / 10;
-   nickles = (((numPennies % 100) % 25) % 10) / 5;
-   pennies = (((numPennies % 100) % 25) % 10) % 5;
+   
+   int dollars = numPennies / 100;
+   int quarters = (numPennies % 100) / 25;
+   int dimes = ((numPennies % 100) % 25) / 10;
+   int nickles = (((numPennies % 100) % 25) % 10) / 5;
+   int pennies = (((numPennies % 100) % 25) % 10) % 5;
+   double exchangeRate = 1.33;
 
+   cout.precision(2);
    cout << "In US currency you have: " << dollars << " dollars, " << quarters << " quarters, " 
         << dimes << " dimes, " << nickles << " nickles, and " << pennies <<" pennies." << endl;
-   cout << "In Canadian currency you have: "<< (numPennies * exchangeRate) / 100 << " dollars.";
+   cout << "In Canadian currency you have: $"<< fixed << (numPennies * exchangeRate) / 100 << " dollars.";
+
    return 0;
 }
