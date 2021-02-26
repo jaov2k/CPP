@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 /*
@@ -14,10 +15,14 @@ using namespace std;
  *     bool canAlwaysWin(int n)
  */ 
 
-bool canAlwaysWin(int n) {
-   // YOUR CODE HERE
+void canAlwaysWin(int n) {
+   int control = 9;
+   int moves = n / control;
+   int remainder = n % control;
+   cout <<"Number of Moves: " << moves <<"\nRemainder: "<< remainder;
 }
+
 int main() {
-   cout << canAlwaysWin(23034);
+   canAlwaysWin(100);
    return 0;
 }
