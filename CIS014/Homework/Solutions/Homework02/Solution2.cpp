@@ -9,9 +9,9 @@ using namespace std;
  * PARAMETER:
  *     int n
  * RETURN VALUE:
- *     string: result in dollars, quarters, dimes, nickels, and pennies
+ *     bool: result either TRUE or FALSE
  * FUNCTION SINGATURE:
- *     string breakCash(int numPennies)
+ *     bool canAlwaysWin(int n)
  */ 
 
 bool canAlwaysWin(int n) {
