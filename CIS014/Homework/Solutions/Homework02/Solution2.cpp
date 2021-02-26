@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 
-/**
+/*
  * FUNCTION NAME: canAlwaysWin
- * PURPOSE: the function takes in the total of pennies from the user as input, 
- *     computes its equivalent in dollars, quarters, dimes, nickels, and 
- *     pennies, and outputs the result in string to the console
+ * PURPOSE: To analyze whether out of a certain number of moves
+ *          there will be a 100% certainty that you will win,
+ *          returning 1 (true) for victory or 0 (false).
  * PARAMETER:
  *     int n
  * RETURN VALUE:
