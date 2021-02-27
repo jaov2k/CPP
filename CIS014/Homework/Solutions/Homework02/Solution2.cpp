@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 
 using namespace std;
 
@@ -15,14 +16,25 @@ using namespace std;
  *     bool canAlwaysWin(int n)
  */ 
 
-void canAlwaysWin(int n) {
-   int control = 9;
-   int moves = n / control;
-   int remainder = n % control;
-   cout <<"Number of Moves: " << moves <<"\nRemainder: "<< remainder;
+void canAlwaysWin(int n) 
+{
+   if (0 < n  && n < INT_MAX)
+   {
+      int control = 4;
+      int moves = n / control;
+      int remainder = n % control;
+      cout << "Total pebbles: " << n 
+           << "\nNumber of Moves: " << moves 
+           << "\nRemainder: "<< remainder;
+   }
+   else
+   {
+      cout << "Number is out of range. End Program.";
+   } 
 }
 
-int main() {
-   canAlwaysWin(100);
+int main() 
+{
+   canAlwaysWin(21);
    return 0;
 }
