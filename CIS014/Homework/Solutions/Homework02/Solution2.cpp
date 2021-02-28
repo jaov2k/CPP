@@ -19,7 +19,7 @@ using namespace std;
 bool canAlwaysWin(int n) 
 {
    if (0 < n  && n < INT_MAX)
-      return n % 9 ? 1 : 0;
+      return n % 9 ? true : false;
 }
 
 int main() 
