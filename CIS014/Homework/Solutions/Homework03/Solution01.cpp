@@ -13,7 +13,7 @@ using namespace std;
  *      bool
  * FUNCTION SINGATURE:
  *      bool HasZeros (int)*/
-bool HasZeros (int);
+bool HasNoZeros (int);
 
 /* FUNCTION NAME: getChampions
  * PURPOSE: 
@@ -24,9 +24,9 @@ bool HasZeros (int);
  *      vector<int>
  * FUNCTION SINGATURE:
  *      vector<int> getChampions(int left, int right)*/
-//vector<int> getChampions(int, int);
+vector<int> getChampions(int, int);
 
-bool HasZeros (int n)
+bool HasNoZeros (int n)
 {
     string num = to_string(n);
     for (int i = 0; i < num.length(); i++)
@@ -37,47 +37,52 @@ bool HasZeros (int n)
     return true;
 }
 
-// vector<int> getChampions(int left, int right)
-// {
-//     vector<int> champs; // for the return
-//     int quotient = 0;
-//     int remainder = 0;
-//     string temp;
-//     if (1 <= left && left <= right && right <= 100)
-//     {
-//         for (int i = 0; i <= (right - left); i++)
-//         {
-//             //Check for 0 digit
-//             HasZeros(left);
-
-//             if (left % 10)
-//             quotient = left / 10;
-//             remainder = left % 10;
-//             if (left % remainder)
-
-//         }
-//         return champs;
-//     }
-//     else
-//         cout << "Numbers are out of range. Exiting.";    
-// }
+vector<int> getChampions(int left, int right)
+{
+    vector<int> champs; // for the return
+    bool isChamp = false;
+    int temp = 0;
+    if (1 <= left && left <= right && right <= 100)
+    {
+        while (left <= right)
+        {
+            if (HasNoZeros(left))
+            {                
+                temp = left;
+                do
+                {
+                    int x = left % (temp % 10);
+                    if (x == 0)
+                    {
+                        isChamp = true;
+                        temp = temp / 10;
+                    }                        
+                    else
+                    {                        
+                        isChamp = false;
+                        break;
+                    }
+                } while (temp >= 1);
+                if (isChamp)
+                    champs.push_back(left);
+            }
+            left++;
+        }
+        return champs;
+    }
+    else
+        cout << "Numbers are out of range. Exiting.";    
+}
 
 int main()
 {
-    int x;
-    cout <<"Enter x: ";
-    cin >> x;
-    if (INT_MIN < x && x < INT_MAX)
-        HasZeros(x) ? cout << "no zeros found" : cout << "zeros detected";
-    else
-        cout << "Out of range. Exiting.";
     // your target function will be tested as such, 
     // with a random start and end value  
-    // vector<int> a = getChampions(1, 22);
+    vector<int> a = getChampions(1, 99);
     
     // this is one example to print out your vector content
     // in the ascending order
-    // for(int i=0; i < a.size(); i++)
-    //     cout << a.at(i) << ' ';
+    for(int i=0; i < a.size(); i++)
+        cout << a.at(i) << ' ';
     return 0;
 }
