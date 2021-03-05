@@ -78,7 +78,7 @@ int main()
 {
     // your target function will be tested as such, 
     // with a random start and end value  
-    vector<int> a = getChampions(1, 99);
+    vector<int> a = getChampions(1, 22);
     
     // this is one example to print out your vector content
     // in the ascending order
