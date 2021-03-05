@@ -4,7 +4,7 @@
 #include <climits>
 using namespace std;
 
-/* FUNCTION NAME: HasNoZeros
+/* FUNCTION NAME: hasNoZeros
  * PURPOSE:
  *      To check if an integer has a 0 as one of its digits
  * PARAMETER:
@@ -12,8 +12,8 @@ using namespace std;
  * RETURN VALUE:
  *      bool
  * FUNCTION SINGATURE:
- *      bool HasZeros (int)*/
-bool HasNoZeros (int);
+ *      bool hasZeros (int)*/
+bool hasNoZeros (int);
 
 /* FUNCTION NAME: getChampions
  * PURPOSE: 
@@ -26,7 +26,7 @@ bool HasNoZeros (int);
  *      vector<int> getChampions(int left, int right)*/
 vector<int> getChampions(int, int);
 
-bool HasNoZeros (int n)
+bool hasNoZeros (int n)
 {
     string num = to_string(n);
     for (int i = 0; i < num.length(); i++)
@@ -46,7 +46,7 @@ vector<int> getChampions(int left, int right)
     {
         while (left <= right)
         {
-            if (HasNoZeros(left))
+            if (hasNoZeros(left))
             {                
                 temp = left;
                 do
