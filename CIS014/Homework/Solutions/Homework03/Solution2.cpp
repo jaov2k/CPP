@@ -9,11 +9,19 @@ using namespace std;
  * RETURN VALUE:
  *      string
  * FUNCTION SINGATURE:
- *      string separateLetters(string input) */
+ *      string separateLetters(string input)
+ */
  
 string separateLetters(string input)
 {
-    
+    string aStr = "";
+    string bStr = "";
+    for (char c : input)
+        if (c == 'a')
+            aStr = aStr + c;
+        else
+            bStr = bStr + c;
+    return aStr + bStr;
 }
 
 int main() {
