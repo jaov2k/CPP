@@ -4,7 +4,7 @@
 #include <climits>
 using namespace std;
 
-/* FUNCTION NAME: HasZeros
+/* FUNCTION NAME: HasNoZeros
  * PURPOSE:
  *      To check if an integer has a 0 as one of its digits
  * PARAMETER:
