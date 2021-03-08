@@ -51,8 +51,7 @@ vector<int> getChampions(int left, int right)
                 temp = left;
                 do
                 {
-                    int x = left % (temp % 10);
-                    if (x == 0)
+                    if ((left % (temp % 10)) == 0)
                     {
                         isChamp = true;
                         temp = temp / 10;
