@@ -14,19 +14,26 @@ using namespace std;
  
 string separateLetters(string input)
 {
-    string aStr = "";
-    string bStr = "";
-    for (char c : input)
-        if (c == 'a')
-            aStr = aStr + c;
-        else
-            bStr = bStr + c;
-    return aStr + bStr;
+    if (input.length() <= 50 && !input.empty())
+    {
+        string aStr = "";
+        string bStr = "";
+        for (char c : input)
+            if (c == 'a')
+                aStr = aStr + c;
+            else
+                bStr = bStr + c;
+        return aStr + bStr;
+    }
+    else if (input.length() > 50)
+        return "String length exceeded. Max length is 50 characters.";
+    else if (input.empty())
+        return "String Empty. Please enter a string of characters. Max length is 50.";
 }
 
 int main() {
     // your target function will be tested like so, with
     // a random string input
-    cout << separateLetters("abababa");
+    cout << separateLetters("abbbbbbbbaaaaaaa");
     return 0;
 }
