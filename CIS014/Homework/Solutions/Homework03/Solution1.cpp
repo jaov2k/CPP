@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <climits>
+
 using namespace std;
 
 /* FUNCTION NAME: hasNoZeros
@@ -26,38 +26,30 @@ bool hasNoZeros (int);
  *      vector<int> getChampions(int left, int right)*/
 vector<int> getChampions(int, int);
 
-bool hasNoZeros (int n)
-{
+bool hasNoZeros (int n) {
     string num = to_string(n);
-    for (int i = 0; i < num.length(); i++)
-    {
+    for (int i = 0; i < num.length(); i++) {
         if (num[i] == '0')
             return false;
     }
     return true;
 }
 
-vector<int> getChampions(int left, int right)
-{
+vector<int> getChampions(int left, int right) {
     vector<int> champs; // for the return
     bool isChamp = false;
     int temp = 0;
-    if (1 <= left && left <= right && right <= 100)
-    {
-        while (left <= right)
-        {
-            if (hasNoZeros(left))
-            {                
+    if (1 <= left && left <= right && right <= 100) {
+        while (left <= right) {
+            if (hasNoZeros(left)) {
                 temp = left;
                 do
                 {
-                    if ((left % (temp % 10)) == 0)
-                    {
+                    if ((left % (temp % 10)) == 0) {
                         isChamp = true;
                         temp = temp / 10;
                     }                        
-                    else
-                    {                        
+                    else {                        
                         isChamp = false;
                         break;
                     }
