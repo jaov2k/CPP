@@ -1,21 +1,27 @@
+/*
+Jose Ortiz
+3/16/2021
+CIS014 - Spring 2021
+Homework Assignment 4: Problem 2
+*/
+
 // STARTER CODE
 #include <iostream>
 #include <string>
 using namespace std;
 
 /**
- * FUNCTION NAME: breakCash
- * PURPOSE: the function takes in the total of pennies from the user as input, 
- *     computes its equivalent in dollars, quarters, dimes, nickels, and 
- *     pennies, and outputs the result in string to the console
+ * FUNCTION NAME: deduplicate
+ * PURPOSE: This function will internally run as many iterations as needed to 
+ *          remove all consecutive duplicates until there is either no consecutive 
+ *          duplicates left, or the string becomes empty (in which the function
+ *          returns an empty string back to the user)
  * PARAMETER:
- *     int numPennies
+ *          string str
  * RETURN VALUE:
- *     string: result in dollars, quarters, dimes, nickels, and pennies. This output 
- *     consists of the breakdown in both US and Canadian currency as in the previous
- *     assignment.
+ *          string
  * FUNCTION SINGATURE:
- *     string breakCash(int numPennies)
+ *          string deduplicate(string str)
  */ 
 string deduplicate(string str) {
    // YOUR CODE HERE
