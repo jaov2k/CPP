@@ -23,12 +23,31 @@ using namespace std;
  * FUNCTION SINGATURE:
  *          string deduplicate(string str)
  */ 
-string deduplicate(string str) {
-   // YOUR CODE HERE
+string deduplicate(string str) 
+{
+   string temp;
+   int j = 0, len = str.length();
+   for (int i = 0; i < len-1; i++)
+   {
+      if (str[i] != str[i+1])
+      {
+         temp[j++] = str[i];
+         cout << str[i] << " " << str[i+1] << " not suppsed to be equal" << endl;
+      }
+         
+   }
+   temp[j++] = str[len-1];
+   for (int i = 0; i < j; i++)
+      str[i] = temp[j];
+
+   return str;
 }
+
 int main() {
    // your target function will be tested as such, 
-   // with a random input 
-   cout << deduplicate("A"); // "A"
+   // with a random input
+   string input;
+   cin >> input;
+   cout << deduplicate(input); // "A"
    return 0;
 }
