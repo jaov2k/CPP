@@ -23,32 +23,28 @@ using namespace std;
  */ 
 int getLongestLength(string str)
 {
-    const int size = 256;    
-    int tally[size] = {0};
-    int total = 0;
-    bool singles = false;
+    const int LEN = 256;
+    int tally[LEN] = {}, total = 0;
+    bool isSingle = false;
     
     //Frequency histogram of the letters
     for (char i : str)
         tally[i]++;
     
     //Totaling max size of the palindrome
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < LEN; i++)
     {
-        if (tally[i] > 1)
+        //if its even
+        if ((tally[i] % 2) == 0)
+            total += tally[i];
+        //if its odd
+        else if ((tally[i] % 2 ) == 1)
         {
-            //if its even
-            if ((tally[i] % 2) == 0)
-                total += tally[i];
-            //if its odd
-            else if ((tally[i] % 2 ) != 0)
-                total = --tally[i];
-        }
-        //if there's single instances
-        else if (tally[i] == 1)
-            singles = true;
-    }
-    return singles ? ++total : total;
+            tally[i--]--;
+            isSingle = true;
+        }        
+    }    
+    return isSingle ? ++total : total;
 }
 
 int main()
