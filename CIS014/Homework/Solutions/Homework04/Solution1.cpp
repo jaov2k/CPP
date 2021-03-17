@@ -25,7 +25,7 @@ int getLongestLength(string str)
 {
     const int LEN = 256;
     int tally[LEN] = {}, total = 0;
-    bool isSingle = false;
+    bool isOdd = false;
     
     //Frequency histogram of the letters
     for (char i : str)
@@ -41,10 +41,10 @@ int getLongestLength(string str)
         else if ((tally[i] % 2 ) == 1)
         {
             tally[i--]--;
-            isSingle = true;
+            isOdd = true;
         }        
     }    
-    return isSingle ? ++total : total;
+    return isOdd ? ++total : total;
 }
 
 int main()
