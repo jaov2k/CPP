@@ -34,10 +34,10 @@ int getLongestLength(string str)
     //Totaling max size of the palindrome
     for (int i = 0; i < LEN; i++)
     {
-        //if its even
+        //Even quantity of the letter
         if ((tally[i] % 2) == 0)
             total += tally[i];
-        //if its odd
+        //Odd quantity of the letter
         else if ((tally[i] % 2 ) == 1)
         {
             tally[i--]--;
