@@ -25,29 +25,28 @@ using namespace std;
  */ 
 string deduplicate(string str) 
 {
-   string temp;
-   int j = 0, len = str.length();
-   for (int i = 0; i < len-1; i++)
+   int i = 0;
+   while (i < str.length())
    {
-      if (str[i] != str[i+1])
-      {
-         temp[j++] = str[i];
-         cout << str[i] << " " << str[i+1] << " not suppsed to be equal" << endl;
-      }
-         
+        if (str[i] == str[i + 1])
+        {
+            str.erase(i,2);     
+            i = 0;
+        }
+        else
+            i++;
    }
-   temp[j++] = str[len-1];
-   for (int i = 0; i < j; i++)
-      str[i] = temp[j];
-
    return str;
 }
 
 int main() {
-   // your target function will be tested as such, 
-   // with a random input
-   string input;
-   cin >> input;
-   cout << deduplicate(input); // "A"
-   return 0;
+  cout << deduplicate("AABB"); // should return empty "" string
+  cout << deduplicate("A"); // "A"
+  cout << deduplicate("ABBA"); // should return an empty "" string
+  cout << deduplicate("AAA"); // "A"
+  cout << deduplicate("AKA"); // "AKA" because there is no consecutive pair.
+  cout << deduplicate("KCCK"); // should return an empty "" string
+  cout << deduplicate("ZZZ"); // "Z"
+  cout << deduplicate("KKCCD"); // should return an empty "" string
+  return 0;
 }
