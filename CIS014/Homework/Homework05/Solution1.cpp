@@ -12,28 +12,23 @@ using namespace std;
  */
 bool canPlantAvocados(vector<int> field, int n)
 {
-   bool isGoodField = false;
-   int goodSpaces = 0;
-   
-   // Count total available good spaces: [0, 0, 0]
-   for (int i = 1; i < n; i++)
+   for (int i = 1; i < field.size(); i++)
    {
       if (field[i-1] == 0 && field[i] == 0 && field[i+1] == 0)
       {
-         goodSpaces++;
          n--;
-      }
+         i++;
+      }        
+      if (n == 0)
+         return true;
    }
-   if (goodSpaces <= n)
-      isGoodField = true;
-   
-   return isGoodField;
+   return false;
 }
 
 int main() {
    // your target function will be tested as such, 
    // with random input
-   vector<int> field = {1, 0, 0, 0, 0, 1, 0, 0, 1};
+   vector<int> field = {1, 0, 1};
    cout << canPlantAvocados(field, 1); // returns 0
    return 0;
 }
