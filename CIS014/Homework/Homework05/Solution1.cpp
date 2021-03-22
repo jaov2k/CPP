@@ -30,11 +30,6 @@ bool canPlantAvocados(vector<int> field, int n)
    return isGoodField;
 }
 
-bool isGoodSpace(vector<int> temp)
-{
-   
-}
-
 int main() {
    // your target function will be tested as such, 
    // with random input
