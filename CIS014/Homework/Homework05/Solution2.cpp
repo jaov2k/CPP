@@ -13,5 +13,7 @@ int main() {
    // also test your own code this way:
    // cout << (compareVersions("0.1", "0.1") == 0); // 1, which is true
    cout << compareVersions("0.1", "0.1"); // 0
+   cout << compareVersions("1.0", "1.1") << endl;
+   cout << compareVersions("2.0", "2.0.1") << endl;
    return 0;
 }
