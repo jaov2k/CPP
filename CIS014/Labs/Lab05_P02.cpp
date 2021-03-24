@@ -12,7 +12,7 @@ int main()
     }
 
     cout << "\n";
-
+    
     //3x3 matrix printing 2 to 18 consecutive even numbers only
     for (int i = 1; i <= 18; i++) {
         if (!(i % 2)) {
