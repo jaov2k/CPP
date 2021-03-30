@@ -9,7 +9,8 @@ using namespace std;
  * FUNCTION SINGATURE:
  */
 vector<int> minusMinusN(vector<int> digits) {
-   // YOUR CODE HERE
+   cout << digits.size();
+   
 }
 int main() {
    // your target function will be tested like so, with random input
