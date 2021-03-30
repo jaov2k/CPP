@@ -14,8 +14,9 @@ void rightShiftElements(int arr[], int N, int M) {
    if (M > N) //This avoids the loops doing laps, and just assigns the actual right shift.
       M = M % N;
 
+   int swap = 0;
    for (int i = 0; i < M; i++) { //This counts the shifts
-      int swap = arr[N-1];
+      swap = arr[N-1];
       for (int j = N-1; j >= 0; j--) { // This moves the entire array to the right by one
          arr[j] = arr[j-1];
          if (j == 0)
