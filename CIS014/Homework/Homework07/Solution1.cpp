@@ -3,29 +3,34 @@
 using namespace std;
 
 /**
- * PURPOSE:
+ * PURPOSE: Recommends the maximum profit an investor can make by placing 
+ *          at most one buy and one sell order in the time slice represented
+ *          by the input vector.
  * PARAMETERS: vector<int>
  * RETURN VALUES: int
  * FUNCTION SIGNATURE: int getMaxProfit(vector<int> &prices)
  */
 void getMaxProfit(vector<int> &prices) {
-   int min = prices[0], max = prices[0];
+   int output = 0, temp = 0;
    if (prices.size() == 1)
-      cout << "Only one price available. Can not complete transation..." << endl;
-   for (int i = 0; i < prices.size(); i++){
-      if (min > prices[i])
-         min = prices[i];
-      if (max < prices[i])
-         max = prices[i];
-
+      cout << "Not enough prices for a transaction...";
+   for (int i = 0; i < prices.size(); i++)
       cout << prices[i] << ", ";
-   }   
-   cout << "\nMin: " << min <<", Max: " <<max<< endl;
+   cout << "\nthere are " << prices.size() << " prices." << endl;
+   for (int i = prices.size() - 1; i >=0; i--){
+      for (int j = i; j >=0; j--){
+         temp = prices[i] - prices[j];
+         if (temp > output)
+            output = temp;
+         cout << "temp is: " << prices[i] << " - " << prices[j] << " = " <<temp << "\tOutput is: " << output << endl;
+      }
+   }
+
+   cout << "output: " << output << endl;
 }
 int main() {
    // your target function will be tested as such, with random input like so
-   vector<int> arr{64, 8, 80, 42, 95, 11, 36, 98, 72, 84, 74, 3, 35, 90, 57, 
-                   54, 86, 69, 76, 13, 79, 89, 21, 47, 41, 93, 77, 22, 45, 16};
+   vector<int> arr{1,2,4};
    getMaxProfit(arr);
    //cout << getMaxProfit(arr); // 3
    return 0;
