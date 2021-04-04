@@ -10,28 +10,26 @@ using namespace std;
  * RETURN VALUES: int
  * FUNCTION SIGNATURE: int getMaxProfit(vector<int> &prices)
  */
-void getMaxProfit(vector<int> &prices) {
+int getMaxProfit(vector<int> &prices) {
    int output = 0, temp = 0;
+   
+   //First check if there is enough prices to perform a transaction.
    if (prices.size() == 1)
-      cout << "Not enough prices for a transaction...";
-   for (int i = 0; i < prices.size(); i++)
-      cout << prices[i] << ", ";
-   cout << "\nthere are " << prices.size() << " prices." << endl;
+      return 0;
+   
+   //Search for the largest profit; Sell price is on the left, Buy price on the right.
    for (int i = prices.size() - 1; i >=0; i--){
       for (int j = i; j >=0; j--){
          temp = prices[i] - prices[j];
          if (temp > output)
-            output = temp;
-         cout << "temp is: " << prices[i] << " - " << prices[j] << " = " <<temp << "\tOutput is: " << output << endl;
+            output = temp; // Keep track of largest difference thus far.
       }
    }
-
-   cout << "output: " << output << endl;
+   return output; //Largest profit.
 }
 int main() {
    // your target function will be tested as such, with random input like so
-   vector<int> arr{1,2,4};
-   getMaxProfit(arr);
-   //cout << getMaxProfit(arr); // 3
+   vector<int> arr{1, 2, 4};
+   cout << getMaxProfit(arr); // 3
    return 0;
 }
