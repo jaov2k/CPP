@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 #include <string.h>
 
 using namespace std;
@@ -10,15 +10,7 @@ using namespace std;
  * FUNCTION SINGATURE: int findx(const char* s, const char* x)
  */
 int findx(const char* s, const char* x) {
-    for (int i = 0; i < strlen(s) - strlen(x); i++){
-        for (int j = 0; j < strlen(x); j++){
-            if (s[i+j] == x[j])                
-                continue;
-            else
-                break;
-        return i;        
-        }
-    }            
+    
 }
 
 int main() {
