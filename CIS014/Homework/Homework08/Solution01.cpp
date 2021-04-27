@@ -22,15 +22,14 @@ public:
     int getNumPossibleSigns(string*, string*, int);
 };
 
-int Solution::getNumPossibleSigns(
-    string* letterInventory, 
-    string* addresses, 
-    int length) {
-        
-
-
-        cout << length << endl;
-        return 145;
+int Solution::getNumPossibleSigns(string* letterInventory, string* addresses, int length) {
+    for (char a : *letterInventory)
+        cout << a;
+    cout << endl;
+    for (int i = 0; i < length; i++)
+        cout << addresses[i] << ", ";
+    cout << endl;
+    return 999;
 };
 
 int main() {
