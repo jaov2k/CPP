@@ -23,11 +23,15 @@ public:
 };
 
 int Solution::getNumPossibleSigns(string* letterInventory, string* addresses, int length) {
-    for (char a : *letterInventory)
-        cout << a;
-    cout << endl;
-    for (int i = 0; i < length; i++)
-        cout << addresses[i] << ", ";
+    int stock[36][1] = {0};
+    stock[0][0] = (*letterInventory)[0];
+    for (int i = 0; i < (*letterInventory).length(); i++){
+        if ((*letterInventory)[i] == stock[i][0])
+            stock[i][1]++;
+
+    }
+    for (int i = 0; i < length; i++) 
+        cout << addresses[i] << (i < length - 1 ? ", " : "");
     cout << endl;
     return 999;
 };
