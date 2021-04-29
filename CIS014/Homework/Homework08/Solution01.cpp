@@ -52,6 +52,17 @@ int Solution::getNumPossibleSigns(string* letterInventory, string* addresses, in
     return possibleSigns;
 };
 
+/**
+ * PURPOSE: 
+ *    Helper function to total the letters in the inventory
+ *    or the signs for later comparison.
+ * PARAMETERS:
+ *    string str
+ * RETURN VALUE:
+ *    vector-2d containing the char and it's quantity
+ * FUNCTION SIGNATURE: 
+ *    vector<vector<int>> Solution::countChars (string str);
+*/ 
 vector<vector<int>> Solution::countChars (string str){
     vector<vector<int>> tally;
     vector<int> temp;
