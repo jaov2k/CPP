@@ -21,41 +21,76 @@ using namespace std;
 class Solution {
 public:
     int getNumPossibleSigns(string*, string*, int);
+    vector<vector<int>> countChars(string);
 };
 
 int Solution::getNumPossibleSigns(string* letterInventory, string* addresses, int length) {
-    vector<vector<int>> inStock;
-    vector<int> temp;
-    temp.push_back((int)(*letterInventory)[0]);
-    temp.push_back(0);
-    inStock.push_back(temp);
+    int possibleSigns = 0;
+    int charMatches = 0;
+    int signTotalChars = 0;
+    vector<vector<int>> letterTotals;
+    vector<vector<int>> signTotals;
+    letterTotals = countChars(*letterInventory);
+    for (int i = 0; i < length; i++){
+        signTotals = countChars(addresses[i]);
+        charMatches = 0;
+        signTotalChars = 0;
+        for (int j = 0; j < letterTotals.size(); j++){
+            for (int k = 0; k < signTotals.size(); k++){
+                if (signTotals.at(k).at(0) == letterTotals.at(j).at(0) && signTotals.at(k).at(1) <= letterTotals.at(j).at(1)){
+                    charMatches += signTotals.at(k).at(1);                  
+                }                    
+            }                   
+        }
+        for (int x = 0; x < signTotals.size(); x++){
+            if ((char)signTotals.at(x).at(0) != ' ')
+                signTotalChars += signTotals.at(x).at(1);
+        }
+        if (charMatches == signTotalChars)
+            possibleSigns++;
+    }
+    return possibleSigns;
+};
 
-    for (int i = 0; i < (*letterInventory).length(); i++){
-        for(int j = 0; j < inStock.size(); j++){
-            if (inStock.at(j).at(0) == (int)(*letterInventory)[i]){
-                inStock.at(j).at(1)++;
+vector<vector<int>> Solution::countChars (string str){
+    vector<vector<int>> tally;
+    vector<int> temp;
+    for (int i = 0; i < str.length(); i++){
+        bool foundIt = false;
+        for(int j = 0; j <= tally.size(); j++){
+            if (j == tally.size() && !foundIt){
+                temp.clear();
+                temp.push_back((int)str[i]);
+                temp.push_back(1);
+                tally.push_back(temp);
                 break;
             }
-            else{
-                temp.clear();
-                temp.push_back((int)(*letterInventory)[i]);
-                temp.push_back(1);
-                inStock.push_back(temp);
-                break;
-            }                
+            else if (j != tally.size() && tally.at(j).at(0) == (int)str[i]) {
+                tally.at(j).at(1)++;
+                foundIt = true;
+            }
         }
     }
-    for(int i = 0; i < inStock.size(); i++)
-        cout << inStock.at(i).at(0) << ", " << inStock.at(i).at(1) << endl;
-        
-    return 99999;
+    return tally;
 };
 
 int main() {
     // Your code will be tested as follows, with different input values
     Solution solution;
-    string inventory = "ABBCCCABBCCCABBCCC";
+    string inventory = "AAAADFADFA223432112";
     string addresses[] = {"S1","CAD","G2"};
     cout << solution.getNumPossibleSigns(&inventory, addresses, 
-        sizeof(addresses)/sizeof(addresses[0]));
+        sizeof(addresses)/sizeof(addresses[0]))<<endl; // 0
+    string inventory0 = "AAAABCCC123456789";
+    string addresses0[] = {"123C" , "123A" , "123 ADA"};
+    cout << solution.getNumPossibleSigns(&inventory0, addresses0, 
+        sizeof(addresses0)/sizeof(addresses0[0]))<<endl; // 2
+    string inventory1 = "ABCDEFGHIJKLMNORSTUVWXYZ1234567890";
+    string addresses1[] = {"2 FIRST ST" , " 13 PUN ST" , "101 AKER"};
+    cout << solution.getNumPossibleSigns(&inventory1, addresses1, 
+        sizeof(addresses1)/sizeof(addresses1[0]))<<endl; // 0
+    string inventory2 = "ABCDAAST";
+    string addresses2[] = {"A BAD ST"};
+    cout << solution.getNumPossibleSigns(&inventory2, addresses2, 
+        sizeof(addresses2)/sizeof(addresses2[0]))<<endl; // 1
 }
