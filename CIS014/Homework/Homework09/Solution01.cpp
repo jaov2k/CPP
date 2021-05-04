@@ -15,29 +15,25 @@ public:
 // ------------------------------------------------------------
 
 /**
- * PURPOSE:
- * PARAMETERS:
- * RETURN VALUES:
- * FUNCTION SIGNATURE:
+ * PURPOSE: To determine the largest score possible
+ * PARAMETERS: vector<vector<int>> &maze
+ * RETURN VALUES: int
+ * FUNCTION SIGNATURE: int CIS14::getMaxPoints(vector<vector<int>> &maze)
  */
 int CIS14::getMaxPoints(vector<vector<int>> &maze) {
-    vector<vector<int>> sums;
-    vector<int> temp;
-    int counter = 0;
-    int peg = 0;
-
     // maze is completely empty
     if (maze.empty()) 
         return 0;
-    
-    for (vector<int> i : maze){
-        for (int j : i){
-            cout << j << " ";
-            counter += j;
-        }            
-        cout << endl;
-    }
-    return 999;
+
+    for (int i = maze.size() - 2; i >= 0; i--){
+        for (int j = 0; j < maze.at(i).size(); j++){
+            if (maze.at(i+1).at(j) > maze.at(i+1).at(j+1))
+                maze.at(i).at(j) += maze.at(i+1).at(j);
+            else
+                maze.at(i).at(j) += maze.at(i+1).at(j+1);
+        }        
+    }  
+    return maze.at(0).at(0);
 }
 
 int main()
@@ -48,6 +44,8 @@ int main()
     // Your target method will be tested as such, with random input
     // as the following example illustrates
     vector<vector<int>> maze = {{0}, {4,1}, {5,3,8}, {1,6,7,3}}; // output = 16
+    cout << cis14.getMaxPoints(maze) << endl;
+    maze = {{2}, {4,1}, {5,3,8}, {1,6,7,3}}; // output = 18
     cout << cis14.getMaxPoints(maze) << endl;
     maze = {{1}, {1,1}, {1,1,1}, {1,1,1,1}}; // output = 4
     cout << cis14.getMaxPoints(maze) << endl;
