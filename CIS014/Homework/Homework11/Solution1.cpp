@@ -2,21 +2,50 @@
 using namespace std;
 
 /**
- * PURPOSE: Calculates the amount of water retention there is in a given topographic terrain after it rains
+ * PURPOSE: Calculates the amount of totalWater collected in a given topographic terrain after rain.
  * PARAMETERS: int*, int
  * RETURN VALUES: int
  * FUNCTION SIGNATURE: int getTotalWaterAmount(int* arr, int size)
  */
 int getTotalWaterAmount(int* arr, int size) {
-   int maxElevation = arr[0];
-   for (int i = 0; i < size; i++) {
-      if (maxElevation < arr[i]) {
-         maxElevation = arr[i];
+   int length = size - 1;
+   int elev = arr[0];
+   int elevIndex = 0;
+   int totalWater = 0;
+   int temp = 0;
+
+   // For totaling all the water from left to right
+   // remembering the tallest peak
+   for(int i = 0; i <= length; i++)
+   {
+      if (arr[i] >= elev)
+      {
+         elev = arr[i];
+         elevIndex = i;
+         temp = 0;
+      }
+      else
+      {
+         totalWater += elev - arr[i];
+         temp += elev - arr[i];
       }
    }
 
-   cout << maxElevation << endl;
-   return 999999999;
+   // For removing all the excess water double counted previously
+   // and totaling from right to left
+   if(elevIndex < length)
+   {
+      totalWater -= temp;
+      elev = arr[length];
+      for(int i = length; i >= elevIndex; i--)
+      {
+         if(arr[i] >= elev)
+               elev = arr[i];
+         else
+            totalWater += elev - arr[i];
+      }
+   }
+   return totalWater;
 }
 
 int main() {
