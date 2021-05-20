@@ -9,7 +9,8 @@ using namespace std;
  * FUNCTION SIGNATURE: int getMaxPond(int* arr, int n)
  */
 int getMaxPond(int* arr, int n) {
-   // YOUR CODE HERE
+   cout << "\nStruggleBus goes brrrr...\n";
+   return 0;
 }
 int main() {
    // Your function will be tested with random input such as the following. 
