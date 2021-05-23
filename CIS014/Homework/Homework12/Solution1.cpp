@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Node
@@ -29,11 +30,22 @@ public:
  * FUNCTION SIGNATURE: Node* addLists(Node* l1, Node* l2)
 */
 Node* CIS14::addLists(Node* l1, Node* l2) {
-    Node* temp = l2;
+    int sizeL1 = 0, sizeL2 = 0;
+    vector<int> list1, list2;
+
     while (l1 != nullptr){
-        cout << l1->val << endl;
+        list1.push_back((*l1).val);
         l1 = l1->next;
     }
+    while (l2 != nullptr){
+        list2.push_back((*l2).val);
+        l2 = l2->next;
+    }
+
+    for (int i = 0; i < list1.size(); i++)
+        (i != list1.size()-1) ? cout << list1[i] << ", " : cout << list1[i] << endl;
+    for (int i = 0; i < list2.size(); i++)
+        (i != list2.size()-1) ? cout << list2[i] << ", " : cout << list2[i] << endl;
 };
 
 int main()
