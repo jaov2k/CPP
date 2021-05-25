@@ -53,6 +53,41 @@ void leadingZeros(vector<int>* v1, vector<int>* v2) {
 }
 
 /**
+ * PURPOSE: Returns void. Creates a new Node.
+ * PARAMETERS: Node** root, int item
+ * RETURN VALUE: void
+ * FUNCTION SIGNATURE: void newNode(Node** root, int item)
+*/
+void newNode(Node** root, int num)
+{
+    Node* temp = new Node(num);
+    Node* ptr;
+  
+    if (*root == nullptr)
+        *root = temp;
+    else {
+        ptr = *root;
+        while (ptr->next != nullptr)
+            ptr = ptr->next;
+        ptr->next = temp;
+    }
+}
+
+/**
+ * PURPOSE: Returns the starting Node address of a linked list.
+ *          Takes a vector, creating a Node from each element
+ * PARAMETERS: vector<int>* vec
+ * RETURN VALUE: Node*
+ * FUNCTION SIGNATURE: Node* vectorToLinkedList(vector<int>* vec)
+*/
+Node* vectorToLinkedList(vector<int>* vec){
+    Node* root = nullptr;
+    for (int i = 0; i < vec->size(); i++)
+        newNode(&root, (*vec)[i]);
+    return root;
+}
+
+/**
  * PURPOSE: Adds two integers, returning the sum. Integers are in the form of linked lists
  *          and single digits are a node in the linked list. The sum is also a linked list
  *          which is returned.
@@ -83,17 +118,42 @@ Node* CIS14::addLists(Node* l1, Node* l2) {
     if (carryOne != 0){
         sum.insert(sum.begin(),carryOne);
     }
-
-    // For debug purposes DELETE ME
-    for (int i = 0; i < int1.size(); i++)
-        (i != int1.size()-1) ? cout << int1[i] << ", " : cout << int1[i] << endl;
-    for (int i = 0; i < int2.size(); i++)
-        (i != int2.size()-1) ? cout << int2[i] << ", " : cout << int2[i] << endl;
-    for (int i = 0; i < sum.size(); i++)
-        (i != sum.size()-1) ? cout << sum[i] << ", " : cout << sum[i] << endl;
-
-    return 0;
+    
+    return vectorToLinkedList(&sum);
 };
+
+// You may use the following code to print your list
+void printList (Node* ans){
+    Node* tmp = ans;
+    while (tmp != nullptr)
+    {
+        (tmp->next != nullptr) ? 
+            cout << tmp->val << "->" : 
+            cout << tmp->val;
+        tmp = tmp->next;
+    }
+    cout << endl;   
+}
+
+// Function to delete an entire linked list
+void deleteList(Node** head_ref)
+{
+ 
+    /* deref head_ref to get the real head */
+    Node* current = *head_ref;
+    Node* next = nullptr;
+ 
+    while (current != nullptr)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+ 
+    /* deref head_ref to affect the real head back
+        in the caller. */
+    *head_ref = nullptr;
+}
 
 int main()
 {
@@ -108,19 +168,14 @@ int main()
     // leaks.
 
     // First input list: 2->3->4->8
-    Node first1(1);
-    
-    // , first2(0), first3(9), first4(1);
-    // first1.next = &first2;
-    // first2.next = &first3;
-    // first3.next = &first4;
+    Node first1(2), first2(3), first3(4), first4(8);
+    first1.next = &first2;
+    first2.next = &first3;
+    first3.next = &first4;
 
     // Second input list: 9->9
-    Node second1(9), second2(9),second3(9),second4(9),second5(9);
+    Node second1(9), second2(9);
     second1.next = &second2;
-    second2.next = &second3;
-    second3.next = &second4;
-    second4.next = &second5;
 
     // Adding:
     //    2->3->4->8
@@ -128,20 +183,28 @@ int main()
     // -------------
     //    2->4->4->7
     Node* ans = cis14.addLists(&first1, &second1);
+    printList(ans);
 
-    // You may use the following code to print your list
-    Node* tmp = ans;
-    while (tmp != nullptr)
-    {
-        (tmp->next != nullptr) ? 
-            cout << tmp->val << "->" : 
-            cout << tmp->val;
-        tmp = tmp->next;
-    }
-    cout << endl;
+    // third input list: 1
+    Node third1(1);
+
+    // fourth input list: 9->9
+    Node fourth1(9), fourth2(9);
+    fourth1.next = &fourth2;
+
+    // Adding:
+    //             1
+    //          9->9
+    // -------------
+    //       1->0->0
+    Node* ans2 = cis14.addLists(&third1, &fourth1);
+    printList(ans2); 
 
     // If your add(...) method allocated heap memory, you
     // should deallocate them here to avoid memory leaks. 
+
+    deleteList(&ans);
+    deleteList(&ans2);
 
     return 0;
 }
