@@ -3,15 +3,6 @@
 
 using namespace std;
 
-struct Block{
-    int top = 0;
-    int right = 0;
-    int bottom = 0;
-    int left = 0;
-    int val = 0;
-    bool isExterior = true;
-};
-
 int checkDepth(vector<vector<int>>& v){
     int smallestWall = 1000;
 
@@ -33,32 +24,6 @@ int checkDepth(vector<vector<int>>& v){
     return smallestWall - v[1][1];
 }
 
-//Start Experimental
-int checkDepthBlock(vector<vector<Block>>& b){
-    int smallestWall = 1000;
-
-    for (int i = 0; i < b.size(); i++){
-        for (int j = 0; j < b[i].size(); j++){
-            if (b[i][j].isExterior){ //skip if its an exterior wall
-                continue;
-            }
-            else if (b[i][j].val <= b[i][j].top ||
-                     b[i][j].val <= b[i][j].right ||
-                     b[i][j].val <= b[i][j].bottom ||
-                     b[i][j].val <= b[i][j].left) { //if a wall can't hold water and it spills
-                return 0;
-            }
-            else{
-                if (b[i][j].val < smallestWall){ //is it the shortest wall
-                    smallestWall = b[i][j].val;
-                }
-            }
-        }
-    }
-    return smallestWall - b[1][1].val;
-}
-//End Experimental
-
 /**
  * PURPOSE: To calculate how much water retention there is 
  *          in a given topographic 3D terrain whenever it rains
@@ -71,25 +36,6 @@ int getTotalWaterAmount(vector<vector<int>>& map)
     // Terrain needs to be at least 3x3 to hold water
     if (map.size() < 3 && map[0].size() < 3)
         return 0;
-
-    //Start Experimental
-    vector<vector<Block>> Blocks(3, vector<Block>(3));
-    vector<Block> singleBlock;
-    for (int i = 0; i < map.size(); i++){
-        for (int j = 0; j < map[i].size(); j++){
-            singleBlock.push_back({
-                map.at(i-1).at(j),  // Top
-                map.at(i).at(j+1),  // Right
-                map.at(i+1).at(j),  // Bottom
-                map.at(i).at(j-1),  // Left
-                map.at(i).at(j)});    // Value 
-            if (i == 0 || j == 0 || i == map.size()-1 || j == map[i].size()-1)
-                singleBlock[j].isExterior = true;
-            Blocks.push_back(singleBlock);
-        }
-    }
-    return checkDepthBlock(Blocks);
-    //End Experimental
 
     int temp = 0;
     vector<vector<int>> subNine(3, vector<int> (3, -1));
